@@ -7,7 +7,7 @@ describe "Skills API", type: :api do
     # test for the 200 status-code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of users are returned
+    # check to make sure the right amount of skills are returned
     expect(json.length).to eq(0)
   end
 
@@ -18,14 +18,13 @@ describe "Skills API", type: :api do
     # test for the 200 status-code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of users are returned
+    # check to make sure the right amount of skills are returned
     expect(json.length).to eq(2)
   end
 
   it 'show the correct attributes and values for each skill' do
     get '/api/v1/skills/1'
 
-    # test for the 200 status-code
     expect(last_response.status).to eq(200)
 
     # except key and values to match
@@ -54,10 +53,9 @@ describe "Skills API", type: :api do
     }
     post '/api/v1/skills', payload
 
-    # test for the 200 status-code
     expect(last_response.status).to eq(201)
 
-    # check to make sure the right amount of users are returned
+    # check to make sure the right amount of skills are returned
     expected_res = {
             "id" => 21,
             "user_id" => 1,
@@ -76,10 +74,9 @@ describe "Skills API", type: :api do
     }
     patch '/api/v1/skills/5', payload
 
-    # test for the 200 status-code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of users are returned
+    # check to make sure the right amount of skills are returned
     expected_res = {
             "id" => 5,
             "user_id" => 3,

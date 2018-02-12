@@ -55,10 +55,9 @@ describe "Endorsements API", type: :api do
     }
     post '/api/v1/endorsements', payload
 
-    # test for the 200 status-code
     expect(last_response.status).to eq(201)
 
-    # check to make sure the right amount of users are returned
+    # check to make sure the right amount of endorsements are returned
     expected_res = {
             "id" => 3,
             "user_id" => 4,
