@@ -4,34 +4,47 @@ describe "Endorsements API", type: :api do
   it 'do not lists all endorsements without user_id' do
     get '/api/v1/endorsements'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
+
+    # check that no endorsement is returned
     expect(json.length).to eq(0)
   end
 
   it 'lists all endorsements for user_id 1' do
     get '/api/v1/endorsements?user_id=1'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
+
+    # check amount of endorsements
     expect(json.length).to eq(0)
   end
 
   it 'lists all endorsements for user_id 2' do
     get '/api/v1/endorsements?user_id=2'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
+
+    # check amount of endorsements
     expect(json.length).to eq(1)
   end
 
   it 'lists all endorsements for user_id 2 and skill_id 1' do
     get '/api/v1/endorsements?user_id=2&skill_id=1'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
+
+    # check amount of endorsements
     expect(json.length).to eq(1)
   end
 
   it 'show the correct attributes and values for each endorsement' do
     get '/api/v1/endorsements/1'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
 
     # expect key and values to match
@@ -55,9 +68,10 @@ describe "Endorsements API", type: :api do
     }
     post '/api/v1/endorsements', payload
 
+    # check HTTP response code
     expect(last_response.status).to eq(201)
 
-    # check to make sure the right amount of endorsements are returned
+    # check expected response
     expected_res = {
             "id" => 3,
             "user_id" => 4,
@@ -66,12 +80,11 @@ describe "Endorsements API", type: :api do
     expect(json).to eq(expected_res)
   end
 
-
   it 'deletes an endorsement' do
     delete '/api/v1/endorsements/2'
-    
+
+    # check HTTP response code
     expect(last_response.status).to eq(204)
   end
-
 
 end

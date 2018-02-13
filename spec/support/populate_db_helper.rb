@@ -1,6 +1,6 @@
-# - Creates 10 users
-# - Add 2 skills for each user
-
+# - Create 10 users
+# - Create 2 skills for each user
+# - Create 2 endorsements for the first skill
 def populate_db
 
     skills = [ "Jump", "Meow", "Milk Analysis", "Play", "Rat tracking",

@@ -4,30 +4,30 @@ describe "Skills API", type: :api do
   it 'do not lists all skills without user_id' do
     get '/api/v1/skills'
 
-    # test for the 200 status-code
+    # check HTTP response code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of skills are returned
+    # check amount of skills to be returned
     expect(json.length).to eq(0)
   end
-
 
   it 'lists all skills for user_id 1' do
     get '/api/v1/skills?user_id=1'
 
-    # test for the 200 status-code
+    # check HTTP response code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of skills are returned
+    # check amount of skills to be returned
     expect(json.length).to eq(2)
   end
 
   it 'show the correct attributes and values for each skill' do
     get '/api/v1/skills/1'
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
 
-    # except key and values to match
+    # check expected response
     expected_skill = {
         "id" => 1,
         "user_id" => 1,
@@ -53,9 +53,10 @@ describe "Skills API", type: :api do
     }
     post '/api/v1/skills', payload
 
+    # check HTTP response code
     expect(last_response.status).to eq(201)
 
-    # check to make sure the right amount of skills are returned
+    # check expected response
     expected_res = {
             "id" => 21,
             "user_id" => 1,
@@ -74,9 +75,10 @@ describe "Skills API", type: :api do
     }
     patch '/api/v1/skills/5', payload
 
+    # check HTTP response code
     expect(last_response.status).to eq(200)
 
-    # check to make sure the right amount of skills are returned
+    # check expected response
     expected_res = {
             "id" => 5,
             "user_id" => 3,
@@ -90,6 +92,7 @@ describe "Skills API", type: :api do
   it 'deletes a skill' do
     delete '/api/v1/skills/20'
 
+    # check HTTP response code
     expect(last_response.status).to eq(204)
   end
 

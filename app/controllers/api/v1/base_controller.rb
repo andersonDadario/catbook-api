@@ -29,8 +29,6 @@ module Api
                         .group(group_params)
                         .where(query_params)
                         .order(order_params)
-                        #.page(page_params[:page])
-                        #.per(page_params[:page_size])
 
           instance_variable_set(plural_resource_name, resources)
           render json: instance_variable_get(plural_resource_name)
@@ -70,19 +68,28 @@ module Api
           # Returns the allowed parameters for ordering
           # Override this method in each API controller
           # to permit additional parameters to order on
-          # @return [Hash]
+          # @return [Hash or String]
           def order_params
-            {}
+            nil
           end
 
+          # Returns the list of tables that should be 
+          # included to prevent N+1 queries
+          # @return [Array]
           def includes_params
             nil
           end
 
+          # Returns the list of tables that should be 
+          # used during a left join, if necessary
+          # @return [Array]
           def left_joins_params
             nil
           end
 
+          # Returns the list of attributes that should be 
+          # grouped together for SQL queris
+          # @return [Array]
           def group_params
             nil
           end
