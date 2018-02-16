@@ -34,9 +34,7 @@ describe "Endorsements API", type: :api do
         "skill_id" => 1,
     }
     expect(json.keys.sort).to eq(expected_endorsement.keys.sort)
-    json.keys.each do |k|
-      expect(expected_endorsement[k]).to eq(json[k]) 
-    end
+    expect(json).to include(expected_endorsement)
   end
 
   it 'creates an endorsement' do

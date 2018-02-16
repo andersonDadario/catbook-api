@@ -27,9 +27,7 @@ describe "Skills API", type: :api do
         ]
     }
     expect(json.keys.sort).to eq(expected_skill.keys.sort)
-    json.keys.each do |k|
-      expect(expected_skill[k]).to eq(json[k]) 
-    end
+    expect(json).to include(expected_skill)
   end
 
   it 'creates a skill' do

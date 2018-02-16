@@ -17,9 +17,7 @@ describe "Users API", type: :api do
         "photo_url" => "/assets/images/cat1.jpg"
     }
     expect(json.keys.sort).to eq(expected_user.keys.sort)
-    json.keys.each do |k|
-      expect(expected_user[k]).to eq(json[k]) 
-    end
+    expect(json).to include(expected_user)
   end
 
 end
