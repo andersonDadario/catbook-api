@@ -12,7 +12,5 @@ class Endorsement < ApplicationRecord
 
   validates_presence_of :user_id, :skill_id
   validates_uniqueness_of :user_id, scope: :skill_id
-
-  # Prevent user from endorsing himself
   validates :user_id, honest_endorsement: true
 end
