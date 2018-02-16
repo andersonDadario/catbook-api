@@ -1,33 +1,21 @@
 require 'spec_helper'
 
 describe "Skills API", type: :api do
-  it 'do not lists all skills without user_id' do
+  it 'does not lists all skills without user_id' do
     get '/api/v1/skills'
-
-    # check HTTP response code
     expect(last_response.status).to eq(200)
-
-    # check amount of skills to be returned
     expect(json.length).to eq(0)
   end
 
   it 'lists all skills for user_id 1' do
     get '/api/v1/skills?user_id=1'
-
-    # check HTTP response code
     expect(last_response.status).to eq(200)
-
-    # check amount of skills to be returned
     expect(json.length).to eq(2)
   end
 
-  it 'show the correct attributes and values for each skill' do
+  it 'shows the correct attributes and values for each skill' do
     get '/api/v1/skills/1'
-
-    # check HTTP response code
     expect(last_response.status).to eq(200)
-
-    # check expected response
     expected_skill = {
         "id" => 1,
         "user_id" => 1,
@@ -45,54 +33,40 @@ describe "Skills API", type: :api do
   end
 
   it 'creates a skill' do
-    payload = {
+    post '/api/v1/skills', {
         skill: {
             user_id: 1,
             name: "Cambalhota"
         }
     }
-    post '/api/v1/skills', payload
-
-    # check HTTP response code
     expect(last_response.status).to eq(201)
-
-    # check expected response
-    expected_res = {
+    expect(json).to eq({
             "id" => 21,
             "user_id" => 1,
             "name" => "Cambalhota",
             "total_of_endorsers" => 0,
             "endorsers" => []
-        }
-    expect(json).to eq(expected_res)
+        })
   end
 
   it 'updates a skill' do
-    payload = {
+    patch '/api/v1/skills/5', {
         skill: {
             name: "Cambalhota Legal"
         }
     }
-    patch '/api/v1/skills/5', payload
-
-    # check HTTP response code
     expect(last_response.status).to eq(200)
-
-    # check expected response
-    expected_res = {
+    expect(json).to eq({
             "id" => 5,
             "user_id" => 3,
             "name" => "Cambalhota Legal",
             "total_of_endorsers" => 0,
             "endorsers" => []
-        }
-    expect(json).to eq(expected_res)
+        })
   end
 
   it 'deletes a skill' do
     delete '/api/v1/skills/20'
-
-    # check HTTP response code
     expect(last_response.status).to eq(204)
   end
 
