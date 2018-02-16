@@ -6,7 +6,6 @@ module Api
         end
 
         def query_params
-            # Mandatory to inform user_id
             params[:user_id] ||= 0
             params.permit(:skill_id, :user_id)
         end
