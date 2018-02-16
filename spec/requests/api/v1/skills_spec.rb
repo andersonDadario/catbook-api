@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Skills API", type: :api do
-  it 'does not lists all skills without user_id' do
+  it 'does not list all skills without user_id' do
     get '/api/v1/skills'
     expect(last_response.status).to eq(200)
     expect(json.length).to eq(0)

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Endorsements API", type: :api do
-  it 'does not lists all endorsements without user_id' do
+  it 'does not list all endorsements without user_id' do
     get '/api/v1/endorsements'
     expect(last_response.status).to eq(200)
     expect(json.length).to eq(0)
